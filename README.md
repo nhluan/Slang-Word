@@ -14,3 +14,6 @@ dùng, confirm có overwrite hay duplicate ra 1 slang word mới.
 người dùng chọn.
 10. Chức năng đố vui, chương trình hiển thị 1 definition, với 4 slang words đáp án cho
 người dùng chọn
+
+# Author: 
+  Nguyễn Hoàng Luân - 20127559
