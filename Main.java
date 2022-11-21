@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Main {
@@ -8,6 +9,8 @@ public class Main {
         Handle handle = new Handle();
 
         dict = handle.readFile();
+
+        HashMap<String, String> assignDict = dict.getDict();
 
         Scanner myInput = new Scanner(System.in);
 
@@ -110,18 +113,42 @@ public class Main {
                 myInput.nextLine();
                 String slang = myInput.nextLine();
 
-                int checkDelete = dict.deleteSlang(slang);
+                System.out.print("Are you sure? (0: no, 1: yes");
+                int check = myInput.nextInt();
 
-                if (checkDelete == 1) {
-                    // xoa thanh cong
-                    System.out.println("Deleted!!!");
+                if (check == 1){
+                    int checkDelete = dict.deleteSlang(slang);
+
+                    if (checkDelete == 1) {
+                        // xoa thanh cong
+                        System.out.println("Deleted!!!");
+                    }
+                    else {
+                        //xoa that bai
+                        System.out.println("Fail delete!!!");
+                    }
                 }
                 else {
-                    //xoa that bai
-                    System.out.println("Fail delete!!!");
+                    System.out.println("Canceled!!!");
                 }
+
             }
             else if (n == 7) {
+                //reset data
+                dict.setDict(assignDict);
+            }
+            else if (n == 8) {
+                //random slang
+                System.out.println("Random: ");
+                ArrayList<String> random = dict.randomSlang();
+
+                System.out.println(random.get(0) + " - " + random.get(1));
+            }
+            else if (n == 9) {
+                //random 4 ans
+                ArrayList<String> result = dict.randomSlangQuestion();
+                System.out.print("Slang word: " + result.get(0));
+
 
             }
         } while (n != 0);

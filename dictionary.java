@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 
 public class dictionary {
     private HashMap<String, String> dict; //luu tru slang va definition
@@ -18,7 +16,7 @@ public class dictionary {
             result.put(index, dict.get(index));
         }
 
-        return result; 
+        return result;
     }
     //in tu dien
     public void printDict(){
@@ -109,4 +107,76 @@ public class dictionary {
         }
         return 0; //xoa that bai do khong ton tai
     }
+
+    //random
+    public int randomMinMax(int min, int max) {
+        Random random = new Random();
+
+        int result = random.nextInt(max + 1 - min) + min ;
+
+        return result;
+
+    }
+
+    public ArrayList<String> getSlang(int pos) {
+        ArrayList<String> result = new ArrayList<String>();
+        int i = 0;
+
+        for (String index: dict.keySet()) {
+            if (i == pos) {
+                result.add(index);
+                result.add(dict.get(index));
+                break;
+            }
+            i++;
+
+        }
+
+        return result;
+    }
+    public ArrayList<String> randomSlang() {
+
+        ArrayList<String> result = new ArrayList<String>();
+        int posRand = this.randomMinMax(0, dict.size());
+
+        int step = 1;
+        for (String index: dict.keySet()){
+            if (step == posRand) {
+                result.add(index);
+                result.add(dict.get(index));
+                break;
+            }
+            else {
+                step++;
+            }
+        }
+
+        return result;
+    }
+
+    public int checkExist(ArrayList<Integer> number, int num) {
+        //1: co ton tai
+        //0: khong ton tai
+
+        for (int i = 0; i < number.size(); i++) {
+            if (number.get(i) == num) {
+                return 1; // co ton tai
+            }
+        }
+        return 0; //khong ton tai
+    }
+
+    //random with question:
+    public ArrayList<String> randomSlangQuestion() {
+        ArrayList<String> result = new ArrayList<String>();
+
+        //lay slang va defi goc
+        ArrayList<String> root = randomSlang();
+
+
+
+        return result;
+    }
+
+
 }
