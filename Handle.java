@@ -13,10 +13,18 @@ public class Handle {
             String line;
 
             while ((line = reader.readLine()) != null){
+
                 String[] map = line.split("`");
                 //0: key
                 //1: value
-                add.put(map[0], map[1]);
+
+                if (map.length > 1) {
+                    add.put(map[0], map[1]);
+                }
+                else {
+                    continue;
+                }
+
             }
             reader.close();
         } catch (IOException ex){
@@ -34,6 +42,22 @@ public class Handle {
         }
     }
 
-    //input user
+    //write file
+    public void writeFile(dictionary dict) {
+        String path = "now_slang.txt";
+        HashMap<String, String> result = dict.getDict();
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+            for (String index: result.keySet()) {
+                String add = index.concat("`");
+                add = add.concat(result.get(index));
+                writer.write(add);
+                writer.write("\n");
+            }
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 
 }

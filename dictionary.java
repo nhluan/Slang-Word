@@ -98,6 +98,15 @@ public class dictionary {
         return 0; //edit that bai do khong tim thay slang can edit
     }
 
+    public void duplicateSlang(String slang, String defi) {
+        String concat = dict.get(slang);
+        concat = concat.concat("|");
+        concat =  concat.concat(defi);
+
+        dict.replace(slang, concat);
+
+    }
+
     //delete
     public int deleteSlang(String slang) {
         if (this.checkSlang(slang) == 1) {
@@ -206,8 +215,6 @@ public class dictionary {
         int posTrue = randomMinMax(2, 4);
         result.set(posTrue, root.get(1)); // luu tru dap an dung trong vi tri random bat ki
 
-
-
         int pos2;
 
         while (true) {
@@ -235,5 +242,72 @@ public class dictionary {
         return result;
     }
 
+
+    public ArrayList<String> randomDefiQuestion() {
+        ArrayList<String> result = new ArrayList<String>();
+        ArrayList<Integer> store = new ArrayList<Integer>(); // luu cac vi tri da random de lay value lam answer
+        ArrayList<Integer> posRand = new ArrayList<Integer>(); //luu cac vi tri da duoc luu trong bien result
+
+        //lay slang va defi goc
+        ArrayList<String> root = randomSlang();
+        result.add(root.get(1));
+
+        store.add(Integer.parseInt(root.get(2)));
+
+        for (int i = 1; i < 5; i++) {
+            result.add("");
+        }
+
+        int count = 0;
+
+        while (true) {
+            if (count == 3) {
+                break;
+            }
+
+            int number = randomMinMax(0, dict.size() - 1);
+
+            if (checkExist(store, number) == 0) {
+                count++;
+                store.add(number);
+            }
+        }
+
+        count = 1; //da co 1 cai duoc add vao result (answer random)
+        int posAnsAdd = store.get(0);
+        String ansAdd = getSlang(posAnsAdd).get(0);
+        result.set(1, ansAdd);
+
+        int posTrue = randomMinMax(2, 4);
+        result.set(posTrue, root.get(0)); // luu tru dap an dung trong vi tri random bat ki
+
+
+
+        int pos2;
+
+        while (true) {
+            pos2 = randomMinMax(2, 4);
+
+            if (pos2 != posTrue) {
+                result.set(pos2, getSlang(store.get(1)).get(0));
+                break;
+            }
+        }
+
+        while (true) {
+            int pos = randomMinMax(2, 4);
+
+            if (pos != pos2 && pos != posTrue) {
+                result.set(pos, getSlang(store.get(2)).get(0));
+                break;
+            }
+        }
+
+        //true value
+        result.add(root.get(0));
+
+
+        return result;
+    }
 
 }

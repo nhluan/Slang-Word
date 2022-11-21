@@ -83,11 +83,22 @@ public class Main {
                 //them
 
                 int checkAdd = dict.addSlang(slang, defi);
+
                 if (checkAdd == 1) {
                     System.out.println("Added!!!");
                 }
                 else {
-                    System.out.println("Fail add!!!");
+                    //co trung xuat hien
+                    System.out.print("Overwrite or Duplicate?");
+                    //1: over
+                    //2: dup
+                    int choice = myInput.nextInt();
+                    if (choice == 1) {
+                        dict.editSlang(slang, defi);
+                    }
+                    else {
+
+                    }
                 }
             }
             else if (n == 5) {
@@ -171,6 +182,32 @@ public class Main {
                 }
 
 
+            }
+
+            else if (n == 10) {
+                //random 4 ans
+                ArrayList<String> result = dict.randomDefiQuestion();
+                //0: definition
+                // 1 2 3 4: answer
+                // 5: key value true
+                System.out.println("Definition: " + result.get(0));
+                int posTrue = 0;
+                for (int i = 1; i < 5; i++) {
+                    if (result.get(i).equals(result.get(5))){
+                        posTrue = i;
+                    }
+                    System.out.println(i + ". " + result.get(i));
+                }
+
+                System.out.print("Enter your choice: ");
+                int choice = myInput.nextInt();
+
+                if (choice == posTrue) {
+                    System.out.println("Correct!!!");
+                }
+                else {
+                    System.out.println("Incorrect!!!");
+                }
             }
 
             else if (n == 11) {
