@@ -29,6 +29,7 @@ public class Main {
             System.out.println("8. Random slang word");
             System.out.println("9. Random question by slang");
             System.out.println("10. Random question by definition");
+            System.out.println("11. Print dictionary slang");
             System.out.println("0. Stop");
 
             System.out.print("Enter your choice: ");
@@ -147,9 +148,33 @@ public class Main {
             else if (n == 9) {
                 //random 4 ans
                 ArrayList<String> result = dict.randomSlangQuestion();
-                System.out.print("Slang word: " + result.get(0));
+                //0: slang
+                // 1 2 3 4: answer
+                // 5: key value true
+                System.out.println("Slang word: " + result.get(0));
+                int posTrue = 0;
+                for (int i = 1; i < 5; i++) {
+                    if (result.get(i).equals(result.get(5))){
+                        posTrue = i;
+                    }
+                    System.out.println(i + ". " + result.get(i));
+                }
+
+                System.out.print("Enter your choice: ");
+                int choice = myInput.nextInt();
+
+                if (choice == posTrue) {
+                    System.out.println("Correct!!!");
+                }
+                else {
+                    System.out.println("Incorrect!!!");
+                }
 
 
+            }
+
+            else if (n == 11) {
+                dict.printDict();
             }
         } while (n != 0);
 

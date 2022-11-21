@@ -144,6 +144,7 @@ public class dictionary {
             if (step == posRand) {
                 result.add(index);
                 result.add(dict.get(index));
+                result.add(Integer.toString(posRand));
                 break;
             }
             else {
@@ -169,10 +170,66 @@ public class dictionary {
     //random with question:
     public ArrayList<String> randomSlangQuestion() {
         ArrayList<String> result = new ArrayList<String>();
+        ArrayList<Integer> store = new ArrayList<Integer>(); // luu cac vi tri da random de lay value lam answer
+        ArrayList<Integer> posRand = new ArrayList<Integer>(); //luu cac vi tri da duoc luu trong bien result
 
         //lay slang va defi goc
         ArrayList<String> root = randomSlang();
+        result.add(root.get(0));
 
+        store.add(Integer.parseInt(root.get(2)));
+
+        for (int i = 1; i < 5; i++) {
+            result.add("");
+        }
+
+        int count = 0;
+
+        while (true) {
+            if (count == 3) {
+                break;
+            }
+
+            int number = randomMinMax(0, dict.size() - 1);
+
+            if (checkExist(store, number) == 0) {
+                count++;
+                store.add(number);
+            }
+        }
+
+        count = 1; //da co 1 cai duoc add vao result (answer random)
+        int posAnsAdd = store.get(0);
+        String ansAdd = getSlang(posAnsAdd).get(1);
+        result.set(1, ansAdd);
+
+        int posTrue = randomMinMax(2, 4);
+        result.set(posTrue, root.get(1)); // luu tru dap an dung trong vi tri random bat ki
+
+
+
+        int pos2;
+
+        while (true) {
+            pos2 = randomMinMax(2, 4);
+
+            if (pos2 != posTrue) {
+                result.set(pos2, getSlang(store.get(1)).get(1));
+                break;
+            }
+        }
+
+        while (true) {
+            int pos = randomMinMax(2, 4);
+
+            if (pos != pos2 && pos != posTrue) {
+                result.set(pos, getSlang(store.get(2)).get(1));
+                break;
+            }
+        }
+
+        //true value
+        result.add(root.get(1));
 
 
         return result;
