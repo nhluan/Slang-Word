@@ -104,7 +104,6 @@ public class dictionary {
         concat =  concat.concat(defi);
 
         dict.replace(slang, concat);
-
     }
 
     //delete

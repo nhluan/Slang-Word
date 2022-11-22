@@ -8,9 +8,9 @@ public class Main {
 
         Handle handle = new Handle();
 
-        dict = handle.readFile();
+        dict = handle.readFile("now_slang.txt");
 
-        HashMap<String, String> assignDict = dict.getDict();
+//        HashMap<String, String> assignDict = dict.getDict();
 
         Scanner myInput = new Scanner(System.in);
 
@@ -89,17 +89,23 @@ public class Main {
                 }
                 else {
                     //co trung xuat hien
-                    System.out.print("Overwrite or Duplicate?");
+                    System.out.print("Overwrite or Duplicate? (1/0): ");
                     //1: over
                     //2: dup
                     int choice = myInput.nextInt();
                     if (choice == 1) {
                         dict.editSlang(slang, defi);
+                        System.out.println("Overwrited!!!");
                     }
                     else {
-
+                        // duplicate
+                        dict.duplicateSlang(slang, defi);
+                        System.out.println("Duplicated!!!");
                     }
                 }
+
+                //update file "now_slang.txt"
+                handle.writeFile(dict);
             }
             else if (n == 5) {
                 //edit slang word
@@ -118,6 +124,9 @@ public class Main {
                 else {
                     System.out.println("Fail edit!!!");
                 }
+
+                //update file "now_slang.txt"
+                handle.writeFile(dict);
             }
             else if (n == 6) {
                 //delete
@@ -144,10 +153,21 @@ public class Main {
                     System.out.println("Canceled!!!");
                 }
 
+                //update file "now_slang.txt"
+                handle.writeFile(dict);
+
             }
             else if (n == 7) {
                 //reset data
-                dict.setDict(assignDict);
+//                dict.setDict(assignDict);
+
+                //doc file data goc
+                dictionary reset = new dictionary();
+
+                reset = handle.readFile("slang.txt");
+
+                //update file "now_slang.txt"
+                handle.writeFile(reset);
             }
             else if (n == 8) {
                 //random slang

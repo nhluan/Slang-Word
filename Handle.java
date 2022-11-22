@@ -3,8 +3,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 public class Handle {
-    public dictionary readFile(){
-        String path = "slang.txt";
+    public dictionary readFile(String path){
         dictionary result = new dictionary();
         HashMap<String, String> add = new HashMap<String, String>();
 
@@ -54,6 +53,7 @@ public class Handle {
                 writer.write(add);
                 writer.write("\n");
             }
+            writer.close();
         }
         catch (IOException ex) {
             ex.printStackTrace();
