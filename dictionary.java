@@ -8,12 +8,26 @@ public class dictionary {
         this.dict = new HashMap<String, String>(dict);
     }
 
+    public void setHistory(LinkedList<String> history) {
+        this.history = history;
+    }
     //get dictionary:
     public HashMap<String, String> getDict() {
         HashMap<String, String> result = new HashMap<String, String>();
 
         for (String index: dict.keySet()) {
             result.put(index, dict.get(index));
+        }
+
+        return result;
+    }
+
+    public LinkedList<String> getHistory() {
+        LinkedList<String> result = new LinkedList<String>();
+
+        //copy history before return
+        for (int i = 0; i < history.size(); i++) {
+            result.add(history.get(i));
         }
 
         return result;
@@ -307,6 +321,10 @@ public class dictionary {
 
 
         return result;
+    }
+
+    public void resetHistory() {
+        this.history.clear();
     }
 
 }

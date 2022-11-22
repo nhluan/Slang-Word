@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class Main {
@@ -9,6 +10,10 @@ public class Main {
         Handle handle = new Handle();
 
         dict = handle.readFile("now_slang.txt");
+
+        LinkedList<String> addHistory = handle.loadHistory("history.txt");
+
+        dict.setHistory(addHistory);
 
 //        HashMap<String, String> assignDict = dict.getDict();
 
@@ -43,6 +48,7 @@ public class Main {
 
                 //luu vao lich su tim kiem boi slang word:
                 dict.addHistory(slangUser);
+                handle.writeFileHistory(dict);
 
                 String result = dict.findBySlang(slangUser);
 
@@ -159,7 +165,7 @@ public class Main {
             }
             else if (n == 7) {
                 //reset data
-//                dict.setDict(assignDict);
+//               dict.setDict(assignDict);
 
                 //doc file data goc
                 dictionary reset = new dictionary();
@@ -168,6 +174,12 @@ public class Main {
 
                 //update file "now_slang.txt"
                 handle.writeFile(reset);
+
+                //clear history full item
+                dict.resetHistory();
+
+                //clear content on file:
+                handle.clearFile("history.txt");
             }
             else if (n == 8) {
                 //random slang

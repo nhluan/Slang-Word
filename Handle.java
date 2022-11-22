@@ -1,6 +1,9 @@
+import com.sun.source.tree.TryTree;
+
 import java.io.*;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 public class Handle {
     public dictionary readFile(String path){
@@ -60,4 +63,78 @@ public class Handle {
         }
     }
 
+    public void saveHistory(dictionary dict) {
+        String path = "history.txt";
+
+        LinkedList<String> result = dict.getHistory();
+
+        //open file and handle
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+
+            for (int i = 0; i < result.size(); i++) {
+                String add = result.get(i);
+                writer.write(add);
+                writer.write("\n");
+            }
+
+            writer.close();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public LinkedList<String> loadHistory(String path) {
+        LinkedList<String> result = new LinkedList<String>();
+
+        try {
+            BufferedReader reader = new BufferedReader(new FileReader(path));
+
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                result.add(line);
+            }
+
+            reader.close();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+
+        return result;
+    }
+
+    public void writeFileHistory(dictionary dict) {
+        String path = "history.txt";
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+
+            LinkedList<String> result = dict.getHistory();
+
+            for (int i = 0; i < result.size(); i++) {
+                writer.write(result.get(i));
+                writer.write("\n");
+            }
+
+            writer.close();
+        }
+        catch(IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public void clearFile(String path) {
+        try {
+            BufferedWriter writer = new BufferedWriter(new FileWriter(path));
+
+            writer.write("");
+
+            writer.close();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
 }
