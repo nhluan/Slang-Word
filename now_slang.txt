@@ -3966,7 +3966,6 @@ IIS`Internet Information Services
 IIR`Idiot In Room
 BIEH`Best I Ever Had
 WWYDT`Why Would You Do That?
-luan`dep trai, hoc goi|nhanh nhen
 DOODE`DUDE
 IJG`I Just Giggled
 IJL`I Just Laughed
@@ -4570,7 +4569,6 @@ KIV`Keep In View
 XKCD`Web comic
 WYDN`What You Doing Now?
 AYEC`At Your Earliest Convenience
-luan2 `dep trai, thong minh
 COURSE`Of course, certainly
 RITE`Right| Write
 ITTET`In These Tough Economic Times

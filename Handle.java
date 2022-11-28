@@ -6,7 +6,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 public class Handle {
-    public dictionary readFile(String path){
+    public dictionary readFile(String path) {
         dictionary result = new dictionary();
         HashMap<String, String> add = new HashMap<String, String>();
 
